@@ -6,7 +6,7 @@ const LEFT = 4;
 
 
 
-class Ant{
+export class Ant{
 	constructor(direction, position = [0, 0], grid){
 		this.direction = direction;
 		this.x = position[0];
