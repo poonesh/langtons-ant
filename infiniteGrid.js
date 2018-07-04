@@ -32,14 +32,19 @@ class Node{
 }
 
 class InfiniteGrid{
-	constructor(nodes, initialCellColorFunction = initialCellColorWhite){
+	constructor(nodes, initialCellColorFunction = initialCellColorChecked){
 		this.nodes = nodes;
 		this.visited = {};
 		this.initialCellColorFunction = initialCellColorFunction;
 	}
 
+	/*this function returns the current color of each cell*/
 	getCellColor(row, col){
-	
+		if (self.visited[row] === undefined || self.visited[row][col] === undefined){
+			cellColor = this.initialCellColorFunction(row, col);
+			return cellColor
+		}
+		return self.visited[row][col].color;
 	}
 
 	/*toggling the color of each cell. if the cell has been visited before just toggling the color 
