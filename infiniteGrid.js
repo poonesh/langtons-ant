@@ -1,6 +1,6 @@
 
-const BLACK = 0;
-const WHITE = 1;
+export const BLACK = 0;
+export const WHITE = 1;
 
 function initialCellColorChecked(x, y) {
 	if (x % 2 === 0 && y % 2 === 0){
@@ -41,30 +41,47 @@ export class InfiniteGrid{
 
 	/*this function returns the current color of each cell*/
 	getCellColor(x, y){
-		if (self.visited[x] === undefined || self.visited[x][y] === undefined){
-			cellColor = this.initialCellColorFunction(x, y);
+		if (this.visited[x] === undefined || this.visited[x][y] === undefined){
+			let cellColor = this.initialCellColorFunction(x, y);
 			return cellColor
 		}
-		return self.visited[x][col].color;
+		return this.visited[x][col].color;
 	}
 
 	/*toggling the color of each cell. if the cell has been visited before just toggling the color 
 	otherwise the node should be added to the nested dictionary. the node will be created and the
 	initial color will be set there*/
 	toggleCellColor(x, y){
-		if (self.visited[x] !== undefined && self.visited[x][y] !== undefined){
+		if (this.visited[x] !== undefined && this.visited[x][y] !== undefined){
 			node.color = node.color === WHITE ? BLACK : WHITE;
 			return;
 		}
 
-		if (self.visited[x] === undefined){
-			self.visited[x] = {};
+		if (this.visited[x] === undefined){
+			this.visited[x] = {};
 		}
 
 		let cellColor = this.initialCellColorFunction(x, y);
 		cellColor = cellColor === WHITE ? BLACK : WHITE;
-		const node = Node(cellColor)
-		self.visited[x][y] = node;
+		const node = new Node(cellColor)
+		this.visited[x][y] = node;
 
 	}
+
+	print(){
+		for(const [x, value] of Object.entries(this.visited)){
+			for(const [y, node] of Object.entries(this.visited[x])){
+				console.log([[x, y], node.color])
+			}
+		}
+	}
+
 }
+
+
+
+
+
+
+
+

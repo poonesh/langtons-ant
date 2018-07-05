@@ -1,16 +1,17 @@
 
+import {BLACK, WHITE} from './infiniteGrid';
+
 const UP = 1;
 const RIGHT = 2;
 const DOWN = 3;
 const LEFT = 4;
 
-
-
 export class Ant{
-	constructor(direction, position = [0, 0], grid){
+	constructor(grid, direction = UP, position = [0, 0]){
 		this.direction = direction;
 		this.x = position[0];
 		this.y = position[1];
+		this.grid = grid;
 	}
 
 	changeDirection(color){
@@ -67,8 +68,8 @@ export class Ant{
 	}
 
 	move(){
-		cellColor = grid.getCellColor(this.x, this.y);
-		grid.toggleCellColor(this.x, this.y);
+		let cellColor = this.grid.getCellColor(this.x, this.y);
+		this.grid.toggleCellColor(this.x, this.y);
 		this.changeDirection(cellColor);
 		this.changePosition();
 	}
